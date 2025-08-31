@@ -2,15 +2,22 @@ import MiOptionsVertical from '../assets/MiOptionsVertical.svg'
 
 export default function MemoItem(props: { title: string, content: string, onClick: () => void }) {
     const handleOptionsClick = (e: MouseEvent) => {
-        e.stopPropagation(); // Prevent triggering the main onClick
-        // Add your options logic here
+        e.stopPropagation();
         console.log('Options clicked');
     };
 
     return (
         <div class="bg-gray-800 rounded-md p-4 m-2 cursor-pointer hover:bg-gray-700 transition-colors" onClick={props.onClick}>
             <div class="flex justify-between items-center mb-2">
-                <h1 class="text-white">{props.title || 'Untitled'}</h1>
+                <h1 
+                    class="text-white overflow-hidden text-ellipsis whitespace-nowrap flex-1 mr-2 relative group"
+                    title={props.title || 'Untitled'}
+                >
+                    {props.title || 'Untitled'}
+                    <span class="absolute bottom-full left-0 bg-gray-900 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none whitespace-nowrap z-10">
+                        {props.title || 'Untitled'}
+                    </span>
+                </h1>
                 <button 
                     onClick={handleOptionsClick}
                     class="p-1 hover:bg-gray-600 rounded transition-colors"

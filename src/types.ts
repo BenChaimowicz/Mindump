@@ -16,6 +16,7 @@ export type Memo = {
 
 export type LongButtonProps = {
     text: string;
+    shortText?: string;
     onClick: () => void;
     href?: string;
     disabled?: boolean;
