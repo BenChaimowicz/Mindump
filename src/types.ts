@@ -2,7 +2,6 @@
 export type AppState = {
     currentMemo: Memo | null;
     memos: Memo[];
-    memosNumber: number;
 }
 
 export type Memo = {
@@ -13,6 +12,11 @@ export type Memo = {
     updatedAt: Date;
 }
 
-export type MemoContextValue = {
-    state: AppState;
+
+
+export type LongButtonProps = {
+    text: string;
+    onClick: () => void;
+    href?: string;
+    disabled?: boolean;
 }

@@ -138,6 +138,7 @@ export function getEmptyMockMemos(): Promise<Memo[]> {
     return Promise.resolve([]);
 }
 
-export function getMemoById(id: string): Promise<Memo> {
-    return Promise.resolve(mockDB.find((memo) => memo.id === id));
+export async function getMemoById(id: string): Promise<Memo> {
+    const memo = mockDB.find((memo) => memo.id === id);
+    return memo as Memo;
 }
