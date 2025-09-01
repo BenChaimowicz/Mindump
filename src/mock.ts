@@ -138,7 +138,23 @@ export function getEmptyMockMemos(): Promise<Memo[]> {
     return Promise.resolve([]);
 }
 
-export async function getMemoById(id: string): Promise<Memo> {
+export async function getMemoById(id: string): Promise<Memo | null> {
+    await new Promise(resolve => setTimeout(resolve, 10));
+    
     const memo = mockDB.find((memo) => memo.id === id);
-    return memo as Memo;
+    return memo || null;
+}
+
+export async function createMemoDump(memoData: Omit<Memo, 'id'>): Promise<Memo> {
+    await new Promise(resolve => setTimeout(resolve, 50));
+    
+    const newMemo = {
+        ...memoData,
+        id: Date.now().toString(),
+        createdAt: new Date(),
+        updatedAt: new Date()
+    };
+    
+    mockDB.push(newMemo);
+    return newMemo;
 }

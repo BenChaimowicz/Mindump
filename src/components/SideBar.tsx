@@ -3,12 +3,9 @@ import { useAppContext } from "../Provider";
 import { createMemo } from "solid-js";
 
 export default function SideBarComponent() {
-    console.log("SideBar: Component is rendering!");
-    
     const { state } = useAppContext();
     const memosCount = createMemo(() => {
         const count = state.memos.length;
-        console.log("SideBar: memosCount:", count);
         return count;
     });
     

@@ -1,14 +1,17 @@
 import type { Component, JSX } from 'solid-js';
+import { Show } from 'solid-js';
 import HomeComponent from './components/Home';
 import SideBarComponent from './components/SideBar';
 import { Router, Route } from '@solidjs/router';
 import MemoScreen from './components/MemoScreen';
 import { AppContextProvider } from './Provider';
 
-const Layout = (props: { children: JSX.Element }) => {
+const Layout = (props: { children: JSX.Element, showSideBar: boolean }) => {
   return (
     <div class="bg-black text-white">
-      <SideBarComponent />
+      <Show when={props.showSideBar}>
+        <SideBarComponent />
+      </Show>
       <div class="ml-64">
         {props.children}
       </div>
@@ -21,12 +24,12 @@ const App: Component = () => {
     <AppContextProvider>
       <Router>
         <Route path="/" component={() => (
-          <Layout>
+          <Layout showSideBar={true}>
             <HomeComponent />
           </Layout>
         )} />
         <Route path="/memo/:id" component={(props) => (
-          <Layout>
+          <Layout showSideBar={false}>
             <MemoScreen memoId={props.params.id as unknown as string} />
           </Layout>
         )} />
