@@ -8,11 +8,11 @@ import { AppContextProvider } from './Provider';
 
 const Layout = (props: { children: JSX.Element, showSideBar: boolean }) => {
   return (
-    <div class="bg-black text-white">
+    <div class="bg-black text-white h-screen">
       <Show when={props.showSideBar}>
         <SideBarComponent />
       </Show>
-      <div class="ml-64">
+      <div class="ml-16 sm:ml-48 md:ml-64 h-full overflow-hidden">
         {props.children}
       </div>
     </div>

@@ -9,7 +9,7 @@ import MaterialSymbolsAdd from "../assets/MaterialSymbolsAdd2.svg";
 export default function HomeComponent() {
     console.log("Home: Component is rendering!");
 
-    const { state, updateMemos, addMemo, setCurrentMemo } = useAppContext();
+    const { state, updateMemos, addMemo, setCurrentMemo, deleteMemo } = useAppContext();
     const [memosResource] = createResource(getMockMemos);
     const navigate = useNavigate();
     const [hasLoaded, setHasLoaded] = createSignal(false);
@@ -48,12 +48,19 @@ export default function HomeComponent() {
         }
     }
 
+    const handleDeleteMemo = (id: string) => {
+        console.log("Home: handleDeleteMemo called with", id);
+        deleteMemo(id);
+    }
+
     return (
-        <div class="p-4 overflow-y-auto relative">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                <For each={state.memos}>{(memo) => (
-                    <MemoItem title={memo.title} content={memo.content} onClick={() => handleMemoClick(memo)} />
-                )}</For>
+        <div class="h-full flex flex-col relative">
+            <div class="flex-1 overflow-y-auto p-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    <For each={state.memos}>{(memo) => (
+                        <MemoItem title={memo.title} content={memo.content} onClick={() => handleMemoClick(memo)} onDelete={() => handleDeleteMemo(memo.id)} />
+                    )}</For>
+                </div>
             </div>
             
             <button 
