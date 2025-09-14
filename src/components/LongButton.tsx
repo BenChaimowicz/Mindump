@@ -1,5 +1,12 @@
-import { LongButtonProps } from "../types";
 import { A } from "@solidjs/router";
+
+export type LongButtonProps = {
+    text: string;
+    shortText?: string;
+    onClick: () => void;
+    href?: string;
+    disabled?: boolean;
+}
 
 export default function LongButton(props: LongButtonProps) {
     const displayText = () => {

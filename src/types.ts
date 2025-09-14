@@ -10,14 +10,15 @@ export type Memo = {
     content: string;
     createdAt: Date;
     updatedAt: Date;
+    category?: MemoCategory;
+    categoryId?: string;
 }
 
-
-
-export type LongButtonProps = {
-    text: string;
-    shortText?: string;
-    onClick: () => void;
-    href?: string;
-    disabled?: boolean;
+export type MemoCategory = {
+    id: string;
+    name: string;
+    color: string;
+    description?: string;
+    createdAt: Date;
+    updatedAt: Date;
 }

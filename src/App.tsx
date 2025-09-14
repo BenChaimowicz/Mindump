@@ -29,7 +29,7 @@ const App: Component = () => {
           </Layout>
         )} />
         <Route path="/memo/:id" component={(props) => (
-          <Layout showSideBar={false}>
+          <Layout showSideBar={true}>
             <MemoScreen memoId={props.params.id as unknown as string} />
           </Layout>
         )} />
